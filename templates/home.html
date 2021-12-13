@@ -1,0 +1,186 @@
+{% extends 'base.html '%}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+
+<html lang="">
+<head>
+<title>BEE 42</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'login_page/layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+<style>
+  .dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  padding-right: 56px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+</style>
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+ 
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <div id="pageintro" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <article>
+
+      <h3 class="heading">crochet dolls and accesarys</h3>
+      <p>you can chose your croche </p>
+      <footer><a class="btn" href="{% url 'regi' %}">Register</a></footer><br>
+      <div class="dropdown">
+        <button class="dropbtn">filter</button>
+        <div class="dropdown-content">
+        <a href="#">all</a>
+        {% for i in cat %}
+        <a href={{i.get_url}}>{{i.name}}</a>
+        {% endfor %}
+        </div>
+      </div>
+    </article>
+    <!-- ################################################################################################ -->
+  </div>
+  <!-- ################################################################################################ -->
+</div>
+
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear">
+
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <section id="introblocks">
+      <ul class="nospace group">
+        {% for i in pg.object_list %}
+        <li class="one_third"><br><br><br><br>
+          <figure><a class="imgover" href="{{i.get_url}}"><img src="{{i.img.url}}" alt="" style="height: 300px;;width: 400px;;"></a>
+            <figcaption>
+              <h6 class="heading">{{i.name}}</h6>
+              <p>{{i.desc|truncatewords:12}}</p><br>
+            </figcaption>
+          </figure>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+
+<center>
+{% for p in pg.paginator.page_range %}
+<a href="?page={{p}}" class="btn btn-light btn-sm{% if pg.number == p %} active {% endif %}">{{p}}</a>
+
+{% endfor %}
+</center>
+<br>
+
+<div class="wrapper row2">
+  <section class="hoc container clear">
+    <!-- ################################################################################################ -->
+    <div class="sectiontitle">
+      <p class="nospace font-xs"></p>
+      <h6 class="heading">commant section</h6>
+    </div>
+    <ul class="nospace group latest">
+      <li class="one_half first">
+        <article>
+          <div class="excerpt">
+            <ul class="nospace meta">
+              <li><i class="fas fa-user"></i> <a href="#">Admin</a></li>
+              <li><i class="fas fa-tag"></i> <a href="#">Category Name</a></li>
+            </ul>
+            <h6 class="heading">Banisha</h6>
+            <p>good product,nice and soft [<a href="#">&hellip;</a>]</p>
+            <footer><a href="#">Read More</a></footer>
+          </div>
+          <time datetime="2045-04-06T08:15+00:00"><strong>06</strong> <em>Apr</em></time>
+        </article>
+      </li>
+    </ul>
+    <footer class="center"><a class="btn" href="#">View More</a></footer>
+    <!-- ################################################################################################ -->
+  </section>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+  <footer id="footer" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <div class="center btmspace-50">
+      <h6 class="heading">BEE 42</h6>
+      <ul class="faico clear">
+
+        <li><a class="faicon-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+        <li><a class="faicon-google-plus" href="#"><i class="fab fa-google-plus-g"></i></a></li>
+      </ul>
+      <p class="nospace">send your massages</p>
+    </div>
+    <!-- ################################################################################################ -->
+    <hr class="btmspace-50">
+    <!-- ################################################################################################ -->
+
+
+    <!-- ################################################################################################ -->
+  </footer>
+</div>
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="{% static 'login_page/layout/scripts/jquery.min.js' %}"></script>
+<script src="{% static 'login_page/layout/scripts/jquery.backtotop.js' %}"></script>
+<script src="{% static 'login_page/layout/scripts/jquery.mobilemenu.js' %}"></script>
+</body>
+</html>
+{% endblock %}
